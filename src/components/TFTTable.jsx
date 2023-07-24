@@ -34,6 +34,37 @@ const TFTTable = () => {
     "iron iv": 27,
   };
 
+
+  const rankImages = {
+    "challenger i": require('../assets/img/emblem-challenger.png'),
+    "grandmaster i": require("../assets/img/emblem-grandmaster.png"),
+    "master i": require("../assets/img/emblem-master.png"),
+    "diamond i": require("../assets/img/emblem-diamond.png"),
+    "diamond ii": require("../assets/img/emblem-diamond.png"),
+    "diamond iii": require("../assets/img/emblem-diamond.png"),
+    "diamond iv": require("../assets/img/emblem-diamond.png"),
+    "platinum i": require("../assets/img/emblem-platinum.png"),
+    "platinum ii": require("../assets/img/emblem-platinum.png"),
+    "platinum iii": require("../assets/img/emblem-platinum.png"),
+    "platinum iv": require("../assets/img/emblem-platinum.png"),
+    "gold i": require("../assets/img/emblem-gold.png"),
+    "gold ii": require("../assets/img/emblem-gold.png"),
+    "gold iii": require("../assets/img/emblem-gold.png"),
+    "gold iv": require("../assets/img/emblem-gold.png"),
+    "silver i": require("../assets/img/emblem-silver.png"),
+    "silver ii": require("../assets/img/emblem-silver.png"),
+    "silver iii": require("../assets/img/emblem-silver.png"),
+    "silver iv": require("../assets/img/emblem-silver.png"),
+    "bronze i": require("../assets/img/emblem-bronze.png"),
+    "bronze ii": require("../assets/img/emblem-bronze.png"),
+    "bronze iii": require("../assets/img/emblem-bronze.png"),
+    "bronze iv": require("../assets/img/emblem-bronze.png"),
+    "iron i": require("../assets/img/emblem-iron.png"),
+    "iron ii": require("../assets/img/emblem-iron.png"),
+    "iron iii": require("../assets/img/emblem-iron.png"),
+    "iron iv": require("../assets/img/emblem-iron.png"),
+  };
+
   const [players, setPlayers] = useState(playersData);
   const [sortColumn, setSortColumn] = useState('');
   const [sortOrder, setSortOrder] = useState('asc');
@@ -159,11 +190,10 @@ const TFTTable = () => {
                 <th className="border text-lg font-bold px-4 py-2 md:w-1/6 lg:w-1/12">
                   Compte
                 </th>
-                <th onClick={() => handleSort('rank')} className={`border text-lg font-bold px-4 py-2 md:w-1/6 lg:w-1/12 hover:text-teal-400 hover:cursor-pointer ${sortColumn === 'rank' ? `sorted-${sortOrder}` : ''}`}>
+                <th onClick={() => handleSort('rank')} className={`border text-lg font-bold px-18 py-2 md:w-1/6 lg:w-1/11 hover:text-teal-400 hover:cursor-pointer ${sortColumn === 'rank' ? `sorted-${sortOrder}` : ''}`}>
                   Rang
                   {sortColumn === 'rank' && <span className={`arrow-${sortOrder === 'asc' ? 'up' : 'down'}`} />}
                 </th>
-
                 <th onClick={() => handleSort('lp')} className={`border text-lg font-bold px-4 py-2 md:w-1/6 lg:w-1/12 hover:text-teal-400 hover:cursor-pointer ${sortColumn === 'lp' ? `sorted-${sortOrder}` : ''}`}>
                   LP
                   {sortColumn === 'lp' && <span className={`arrow-${sortOrder === 'asc' ? 'up' : 'down'}`} />}
@@ -195,8 +225,21 @@ const TFTTable = () => {
                 <tr key={player.id}>
                   <td className="border px-4 py-2">{player.position}</td>
                   <td className="border px-4 py-2">{player.name}</td>
-                  <td className="border px-4 py-2">{player.account}</td>
-                  <td className="border px-4 py-2">{player.rank}</td>
+                  <td className="border px-4 py-2">
+                    <a href={`https://lolchess.gg/profile/euw/${player.account}`} target="_blank" rel="noopener noreferrer" className='hover:text-teal-400 hover:cursor-pointer'>
+                      {player.account}
+                    </a>
+                  </td>
+                  <td className="border px-4 py-2 flex items-center" style={{ width: '100%' }}>
+                    {player.rank && rankImages[player.rank.toLowerCase()] && (
+                      <img
+                        src={rankImages[player.rank.toLowerCase()]}
+                        alt={player.rank}
+                        className="w-8 h-6 mr-2"
+                      />
+                    )}
+                    <span>{player.rank}</span>
+                  </td>
                   <td className="border px-4 py-2">{player.leaguePoints}</td>
                   <td className="border px-4 py-2">{player.nbPartie}</td>
                   <td className="border px-4 py-2">{player.win}</td>
