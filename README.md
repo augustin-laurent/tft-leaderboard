@@ -1,3 +1,7 @@
+# This app is no longer maintened a newer version has been made here : 
+
+[TFT Leaderboard](https://github.com/augustin-laurent/TFT_Leaderboard)
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
